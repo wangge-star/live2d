@@ -1,3 +1,23 @@
+function ap_init() {
+    $(".aplayer-body").addClass("my-hide");
+    ap.lrc.hide();  //初始化时隐藏歌词
+    ap.on('play', () => ap.lrc.show());
+    ap.on('pause', () => ap.lrc.hide());
+}
+
+var music_flag=false;
+function aplayer_panel_toggle(){
+	if(music_flag){
+		$(".aplayer.aplayer-fixed .aplayer-body").addClass("my-hide");
+		$(".aplayer.aplayer-fixed .aplayer-list").addClass("my-hide zero-margin-bottom");
+		music_flag=false;
+	}
+	else{
+		$(".aplayer.aplayer-fixed .aplayer-body").removeClass("my-hide");
+		$(".aplayer.aplayer-fixed .aplayer-list").removeClass("my-hide zero-margin-bottom");
+		music_flag=true;
+	}
+}
 
 function loadWidget() {
 	localStorage.removeItem("waifu-display");
@@ -6,6 +26,7 @@ function loadWidget() {
 			<div id="waifu-tips"></div>
 			<canvas id="live2d" width="800" height="800"></canvas>
 			<div id="waifu-tool">
+				<span class="fa fa-lg fa-music"></span>
 				<span class="fa fa-lg fa-comment"></span>
 				<span class="fa fa-lg fa-user-circle"></span>
 				<span class="fa fa-lg fa-camera-retro"></span>
@@ -234,3 +255,5 @@ function initWidget() {
 		loadWidget();
 	}
 }
+
+console.log('\n' + ' %c Live2D with Music Player' + ' %c https://github.com/crowya/live2d ' + '\n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;');
